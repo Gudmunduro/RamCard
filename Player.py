@@ -12,4 +12,4 @@ class Player:
         self.cards = cards
 
     def get_top_card(self):
-        pass
+        return self.cards[len(self.cards) - 1]
