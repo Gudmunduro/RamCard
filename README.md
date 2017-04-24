@@ -1,0 +1,2 @@
+# RamCard
+Hópverkefni fyrir Forritun
