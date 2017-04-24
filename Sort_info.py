@@ -16,6 +16,6 @@ class Sort:
         with open(Reference.FILE_NAME, 'r', encoding=Reference.ENCODING) as data:
             dump = csv.reader(data, delimiter=';')
             for i in dump:
-                i[0] = Card.Card(i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9])
+                i[0] = Card.Card(i[0], float(i[1]), int(i[2]), float(i[3]), int(i[4]), float(i[5]), int(i[6]),
+                                 int(i[7]), float(i[8]))
                 self.card_list.append(i[0])
-        print(self.card_list[0])
