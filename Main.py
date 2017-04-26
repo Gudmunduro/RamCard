@@ -23,8 +23,10 @@ class Main:
         game = Game(players)
         while True:
             game.loop()
+            break
 
 
 if __name__ == '__main__':
     while True:
         Main.main()
+        break
