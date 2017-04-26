@@ -5,13 +5,16 @@ Card splitter class
 """
 import Reference
 from random import randint
+from Sort_info import Sort
 
 
 class CardSplitter:
 
     def __init__(self, player_count):
+        sort = Sort()
+        sort.main()
         self.player_count = player_count
-        self.remaining_cards = Reference.CARD_LIST
+        self.remaining_cards = sort.card_list
 
     def get_random_cards(self):
         rnd_card_list = []
