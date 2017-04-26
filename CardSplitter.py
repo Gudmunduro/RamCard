@@ -18,7 +18,7 @@ class CardSplitter:
 
     def get_random_cards(self):
         rnd_card_list = []
-        card_count = 52 / self.player_count
+        card_count = int(52 / self.player_count)
         for i in range(card_count):
             rnd_number = randint(0, len(self.remaining_cards) - 1)
             rnd_card_list.append(self.remaining_cards[rnd_number])
