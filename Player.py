@@ -15,4 +15,4 @@ class Player:
         return self.cards[len(self.cards) - 1]
 
     def remove_top_card(self):
-        self.cards.pop(len(self.cards) - 1)
+        self.cards.pop()
