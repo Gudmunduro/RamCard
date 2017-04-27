@@ -1,21 +1,22 @@
 """
 Guðmundur
-Classes for ui
+Class for ui
 27/4/2017
 """
 
 
-class UI():
+class UI:
 
     @staticmethod
     def display_card(card):
+        """Prentar út spil"""
         print("--- " + card.name + " ---")
-        print("Þyngd: " + str(card.weight))
-        print("Mjólkurlangi dætra: " + str(card.milk))
-        print("Einkunn ullar: " + str(card.wool))
-        print("Fjöldi afkvæma: " + str(card.childs))
-        print("Einkunn læris: " + str(card.hind_legs))
-        print("Frjósemi: " + str(card.fertility))
-        print("Þykkt bakvöðva: " + str(card.meat))
-        print("Enkun fyrir malir: " + str(card.ass))
+        print("1 Þyngd: " + str(card.weight))
+        print("2 Mjólkurlangi dætra: " + str(card.milk))
+        print("3 Einkunn ullar: " + str(card.wool))
+        print("4 Fjöldi afkvæma: " + str(card.childs))
+        print("5 Einkunn læris: " + str(card.hind_legs))
+        print("6 Frjósemi: " + str(card.fertility))
+        print("7 Þykkt bakvöðva: " + str(card.meat))
+        print("8 Enkun fyrir malir: " + str(card.ass))
         print("---------")
