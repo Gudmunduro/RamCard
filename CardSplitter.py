@@ -9,6 +9,7 @@ from Sort_info import Sort
 
 
 class CardSplitter:
+    """Klasi sem skiptir spilum á milli spilanda"""
 
     def __init__(self, player_count):
         sort = Sort()
@@ -17,6 +18,7 @@ class CardSplitter:
         self.remaining_cards = sort.card_list
 
     def get_random_cards(self):
+        """Skilar random spilum fyrir spilanda í lista"""
         rnd_card_list = []
         card_count = int(52 / self.player_count)
         for i in range(card_count):
