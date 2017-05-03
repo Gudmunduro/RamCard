@@ -17,6 +17,7 @@ class Game:
         self.state = 0
         self.extra_card_players = []
         self.leftover_cards = []
+        self.state2_current_player_id = 0
 
     def current_player(self):
         """Skilar núverandi spilanda"""
@@ -78,16 +79,38 @@ class Game:
             if p != player:
                 cards.append(player.remove_top_card())
         player.add_cards(cards)
-        UI.print_score_board(self.players, category)
+        UI.print_score_board(self.players, category, player)
         self.set_current_player_to_next_player()
 
-    # - state 2 -
+    # -------- state 2 --------
+    """
+        State 2 is...
+    """
 
     def state2_current_player(self):
-        pass
+        return self.extra_card_players[self.state2_current_player_id]
 
-    def state2_do_winner_stuff(self):
-        pass
+    def state2_set_current_player_to_next_player(self):
+        """Setur current_player_id í spilandann sem á að gera næst"""
+        if len(self.extra_card_players) >= self.state2_current_player_id:
+            self.state2_current_player_id = 0
+        else:
+            self.state2_current_player_id += 1
+
+    def state2_find_player_with_highest_of(self, category):
+        values = self.state2_values_for_category(category)
+        return self.extra_card_players[values.index(max(values))]
+
+    def state2_do_winner_stuff(self, category):
+        self.state = 0
+        player = self.state2_find_player_with_highest_of(category)
+        cards = []
+        for p in self.extra_card_players:
+            if p != player:
+                cards.append(player.remove_top_card())
+        player.add_cards(self.leftover_cards)
+        player.add_cards(cards)
+        UI.print_score_board(self.extra_card_players, category)
 
     def state2_values_for_category(self, category):
         """Skilar lista af einkun fyrir tiltekin eiginleika fyrir alla spilendur"""
@@ -113,7 +136,7 @@ class Game:
 
     def state2_two_players_with_same_value(self, category):
         """Skilar true eða false eftir því hvort tveir spilendur séu með sömu tölu eða ekki"""
-        values = self.values_for_category(category)
+        values = self.state2_values_for_category(category)
         return values.count(max(values)) > 1
 
     def state2_get_players_with_same_value(self, category):
@@ -122,7 +145,7 @@ class Game:
         players = []
         for i in range(len(values)):
             if values[i] == max(values):
-                players.append(self.players[i])
+                players.append(self.extra_card_players[i])
         return players
 
     def state2(self):
@@ -130,16 +153,13 @@ class Game:
         category = self.state2_current_player().choose_category()
         if self.state2_two_players_with_same_value(category):
             players = self.state2_get_players_with_same_value(category)
-            """Þessi partur er ekki tilbúinn"""
-            print("Það fengu fleiri en einn hæðstu töluna")
+            print("Það fengu fleiri en einn hæðstu töluna aftur")
             self.extra_card_players = players
-            self.leftover_cards = self.values_for_category(category)
-            self.state = 1
+            self.leftover_cards = self.leftover_cards + self.values_for_category(category)
         else:
-            self.do_winner_stuff(category)
+            self.state2_do_winner_stuff(category)
 
-
-    # -         -
+    ######################################################################
 
     def loop(self):
         """Aðal loopan í leiknum"""
@@ -149,7 +169,6 @@ class Game:
         category = self.current_player().choose_category()
         if self.two_players_with_same_value(category):
             players = self.get_players_with_same_value(category)
-            """Þessi partur er ekki tilbúinn"""
             print("Það fengu fleiri en einn hæðstu töluna")
             self.extra_card_players = players
             self.leftover_cards = self.values_for_category(category)
