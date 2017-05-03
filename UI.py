@@ -3,7 +3,9 @@ Guðmundur
 Class for ui
 27/4/2017
 """
-from Reference import CATEGORY
+
+import Functions
+
 
 class UI:
 
@@ -22,11 +24,12 @@ class UI:
         print("---------")
 
     @staticmethod
-    def print_score_board(players, attribute):
+    def print_score_board(players, attribute, winner):
         scores = {}
         for p in players:
             scores[p.name] = p.get_top_card()
-
+        print('--- Sigurvegari ---')
+        print(winner)
         print("--- Stig ---")
         for i in scores:
-            print(i[0], i[1].[attribute -1])
+            print(i, Functions.get_attr(i, attribute, scores))
