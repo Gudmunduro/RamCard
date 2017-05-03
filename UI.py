@@ -28,8 +28,15 @@ class UI:
         scores = {}
         for p in players:
             scores[p.name] = p.get_top_card()
+            print('---------')
+            print(p.name)
+            print(len(p.cards))
+            for i in p.cards:
+                print(i.name)
+            print('---------')
         print('--- Sigurvegari ---')
-        print(winner)
+        print()
         print("--- Stig ---")
         for i in scores:
             print(i, Functions.get_attr(i, attribute, scores))
+
