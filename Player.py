@@ -5,7 +5,7 @@ Player class
 """
 from UI import UI
 from random import randint
-from Functions import intinput
+from Functions import *
 from Reference import *
 
 
@@ -19,6 +19,7 @@ class Player:
 
     def get_top_card(self):
         """Returns top card"""
+        debug(self.cards[-1])
         return self.cards[-1]
 
     def move_top_card_to_bottom(self):
@@ -35,6 +36,7 @@ class Player:
     def remove_top_card(self):
         """pops top card and returns it"""
         card = self.cards[len(self.cards) - 1]
+        debug(self.cards[-1])
         self.cards.pop()
         return card
 
