@@ -8,13 +8,15 @@ import csv
 import Card
 
 unaccounted = lambda x: 'Eiginleiki ekki mældur' if (x == 'x') else int(x)
-
+# unaccounted finds if a attribute dose not have a value
 
 class Sort:
+    """ Class witch reads in info from file """
     def __init__(self):
         self.card_list = []
 
     def main(self):
+        """ reads the info from file and appends to self.card_list """
         with open(Reference.FILE_NAME, 'r', encoding=Reference.ENCODING) as data:
             dump = csv.reader(data, delimiter=';')
             for i in dump:

@@ -10,7 +10,7 @@ from Reference import *
 
 
 class Player:
-    """Klasi fyrir spilanda"""
+    """Class for player"""
 
     def __init__(self, name, cards, ai=False):
         self.name = name
@@ -18,11 +18,11 @@ class Player:
         self.ai = ai
 
     def get_top_card(self):
-        """Skilar efsta spilinu"""
+        """Returns top card"""
         return self.cards[len(self.cards) - 1]
 
     def choose_category(self):
-        """Skilar flokknum sem spílandinn valdi"""
+        """Returns attribute witch player selected"""
         if not self.ai:
             UI.display_card(self.get_top_card())
             return CATEGORY(intinput("Hvaða flokk villtu velja", 1, 8))
@@ -30,11 +30,11 @@ class Player:
             return randint(1, 8)
 
     def remove_top_card(self):
-        """Tekur í burtu efsta spilið og skilar því"""
+        """pops top card and returns it"""
         card = self.cards[len(self.cards) - 1]
         self.cards.pop()
         return card
 
     def add_cards(self, cards):
-        """Bætir lista af spilum"""
+        """Add cards to list"""
         self.cards = cards + self.cards

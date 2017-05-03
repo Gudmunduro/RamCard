@@ -10,11 +10,11 @@ from CardSplitter import CardSplitter
 
 
 class Main:
-    """Aðal klasinn í verkefninu"""
+    """Main Class"""
 
     @staticmethod
     def main():
-        """Aðal fallið í verkefninu"""
+        """Main Function"""
         player_count = intinput("Sláðu inn hversu margir leikmenn eru", 1, 12) + 1
         players = []
         card_splitter = CardSplitter(player_count)
