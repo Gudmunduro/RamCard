@@ -21,6 +21,9 @@ class Player:
         """Returns top card"""
         return self.cards[-1]
 
+    def move_top_card_to_bottom(self):
+        self.cards.isert(0, self.cards.pop())
+
     def choose_category(self):
         """Returns attribute witch player selected"""
         if not self.ai:
