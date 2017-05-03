@@ -19,7 +19,7 @@ class Player:
 
     def get_top_card(self):
         """Returns top card"""
-        return self.cards[len(self.cards) - 1]
+        return self.cards[-1]
 
     def choose_category(self):
         """Returns attribute witch player selected"""

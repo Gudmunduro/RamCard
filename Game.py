@@ -30,6 +30,16 @@ class Game:
         else:
             self.current_player_id += 1
 
+    def get_top_cards(self):
+        cards = []
+        for p in self.players:
+            cards.append(p.get_top_card())
+        return cards
+
+    def remove_top_cards(self):
+        for p in self.players:
+            p.remove_top_card()
+
     def values_for_category(self, category):
         """Skilar lista af einkun fyrir tiltekin eiginleika fyrir alla spilendur"""
         values = []
@@ -101,6 +111,16 @@ class Game:
         values = self.state2_values_for_category(category)
         return self.extra_card_players[values.index(max(values))]
 
+    def state2_get_top_cards(self):
+        cards = []
+        for p in self.extra_card_players:
+            cards.append(p.get_top_card())
+        return cards
+
+    def state2_remove_top_cards(self):
+        for p in self.extra_card_players:
+            p.remove_top_card()
+
     def state2_do_winner_stuff(self, category):
         self.state = 0
         player = self.state2_find_player_with_highest_of(category)
@@ -110,7 +130,7 @@ class Game:
                 cards.append(player.remove_top_card())
         player.add_cards(self.leftover_cards)
         player.add_cards(cards)
-        UI.print_score_board(self.extra_card_players, category)
+        UI.print_score_board(self.extra_card_players, category, player)
 
     def state2_values_for_category(self, category):
         """Skilar lista af einkun fyrir tiltekin eiginleika fyrir alla spilendur"""
@@ -155,7 +175,8 @@ class Game:
             players = self.state2_get_players_with_same_value(category)
             print("Það fengu fleiri en einn hæðstu töluna aftur")
             self.extra_card_players = players
-            self.leftover_cards = self.leftover_cards + self.values_for_category(category)
+            self.leftover_cards = self.leftover_cards + self.state2_get_top_cards()
+            self.state2_remove_top_cards()
         else:
             self.state2_do_winner_stuff(category)
 
@@ -171,7 +192,8 @@ class Game:
             players = self.get_players_with_same_value(category)
             print("Það fengu fleiri en einn hæðstu töluna")
             self.extra_card_players = players
-            self.leftover_cards = self.values_for_category(category)
+            self.leftover_cards = self.get_top_cards()
+            self.remove_top_cards()
             self.state = 1
         else:
             self.do_winner_stuff(category)
