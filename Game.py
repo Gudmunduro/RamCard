@@ -89,6 +89,7 @@ class Game:
             if p != player:
                 cards.append(player.remove_top_card())
         player.add_cards(cards)
+        player.move_top_card_to_bottom()
         UI.print_score_board(self.players, category, player)
         self.set_current_player_to_next_player()
 
@@ -130,6 +131,7 @@ class Game:
                 cards.append(player.remove_top_card())
         player.add_cards(self.leftover_cards)
         player.add_cards(cards)
+        player.move_top_card_to_bottom()
         UI.print_score_board(self.extra_card_players, category, player)
 
     def state2_values_for_category(self, category):
