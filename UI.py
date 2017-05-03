@@ -3,7 +3,7 @@ Guðmundur
 Class for ui
 27/4/2017
 """
-
+from Reference import CATEGORY
 
 class UI:
 
@@ -22,5 +22,11 @@ class UI:
         print("---------")
 
     @staticmethod
-    def print_score_board(players):
-        print("")
+    def print_score_board(players, attribute):
+        scores = {}
+        for p in players:
+            scores[p.name] = p.get_top_card()
+
+        print("--- Stig ---")
+        for i in scores:
+            print(i[0], i[1].[attribute -1])
