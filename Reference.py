@@ -4,11 +4,14 @@ Reference
 """
 from enum import Enum
 
+# ---- file info ----
 FILE_NAME = 'ram.txt'
 ENCODING = 'utf-8'
+# -------------------
 
 
 class CATEGORY(Enum):
+    """ attribute enumeration class """
     WEIGHT = 1
     MILK = 2
     WOOL = 3

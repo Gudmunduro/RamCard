@@ -6,7 +6,7 @@ functions
 
 
 def intinput(text="Sláðu inn tölu", limit_from=0, limit_to=1000):
-    """Input fyrir tölur"""
+    """Input for numbers"""
     while True:
         value = 0
         try:

@@ -9,7 +9,7 @@ class UI:
 
     @staticmethod
     def display_card(card):
-        """Prentar út spil"""
+        """Prints out card info"""
         print("--- " + card.name + " ---")
         print("1 Þyngd: " + str(card.weight))
         print("2 Mjólkurlangi dætra: " + str(card.milk))
