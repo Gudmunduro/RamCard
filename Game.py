@@ -13,6 +13,9 @@ class Game:
     def __init__(self, players):
         self.players = players
         self.current_player_id = 0
+        self.state = 0
+        self.extra_card_players = []
+        self.leftover_cards = []
 
     def current_player(self):
         """Skilar núverandi spilanda"""
@@ -76,14 +79,28 @@ class Game:
         player.add_cards(cards)
         self.set_current_player_to_next_player()
 
+    # - state 2 -
+
+    def state2_get_current_player(self):
+        pass
+
+    def state2(self):
+        pass
+
+    # -         -
+
     def loop(self):
         """Aðal loopan í leiknum"""
+        if self.state == 1:
+            self.state2()
         print("--- " + self.current_player().name + " ---")
         category = self.current_player().choose_category()
         if self.two_players_with_same_value(category):
             players = self.get_players_with_same_value(category)
             """Þessi partur er ekki tilbúinn"""
             print("Það fengu fleiri en einn hæðstu töluna")
-            exit()
+            self.extra_card_players = players
+            self.leftover_cards = self.values_for_category(category)
+            self.state = 1
         else:
             self.do_winner_stuff(category)

@@ -20,3 +20,7 @@ class UI:
         print("7 Þykkt bakvöðva: " + str(card.meat))
         print("8 Enkun fyrir malir: " + str(card.ass))
         print("---------")
+
+    @staticmethod
+    def print_score_board(players):
+        print("")
