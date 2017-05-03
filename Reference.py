@@ -8,7 +8,7 @@ from enum import Enum
 FILE_NAME = 'ram.txt'
 ENCODING = 'utf-8'
 # -------------------
-
+DEBUG = False
 
 class CATEGORY(Enum):
     """ attribute enumeration class """

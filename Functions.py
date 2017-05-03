@@ -3,7 +3,7 @@ Guðmundur
 functions
 26/4/2017
 """
-from Reference import CATEGORY
+import Reference
 
 
 def intinput(text="Sláðu inn tölu", limit_from=0, limit_to=1000):
@@ -22,19 +22,24 @@ def intinput(text="Sláðu inn tölu", limit_from=0, limit_to=1000):
 
 
 def get_attr(num, attri, cardsDictio):
-    if attri == CATEGORY.WEIGHT:
+    if attri == Reference.CATEGORY.WEIGHT:
         return cardsDictio[num].weight
-    elif attri == CATEGORY.MILK:
+    elif attri == Reference.CATEGORY.MILK:
         return cardsDictio[num].milk
-    elif attri == CATEGORY.WOOL:
+    elif attri == Reference.CATEGORY.WOOL:
         return cardsDictio[num].wool
-    elif attri == CATEGORY.CHILDS:
+    elif attri == Reference.CATEGORY.CHILDS:
         return cardsDictio[num].childs
-    elif attri == CATEGORY.HIND_LEGS:
+    elif attri == Reference.CATEGORY.HIND_LEGS:
         return cardsDictio[num].hind_legs
-    elif attri == CATEGORY.FERTILITY:
+    elif attri == Reference.CATEGORY.FERTILITY:
         return cardsDictio[num].fertility
-    elif attri == CATEGORY.MEAT:
+    elif attri == Reference.CATEGORY.MEAT:
         return cardsDictio[num].meat
-    elif attri == CATEGORY.ASS:
+    elif attri == Reference.CATEGORY.ASS:
         return cardsDictio[num].ass
+
+
+def debug(text):
+    if Reference.DEBUG:
+        print(text)
