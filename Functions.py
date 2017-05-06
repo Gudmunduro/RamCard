@@ -21,6 +21,18 @@ def intinput(text="Sláðu inn tölu", limit_from=0, limit_to=1000):
                 print("Talan þarf að vera á milli {} og {}".format(str(limit_from), str(limit_to)))
 
 
+def question(text):
+    """Function for yes or no questions"""
+    ans = ""
+    while True:
+        ans = input(text + ": ")
+        if ans.lower() in ["j", "já", "ja", "y", "n", "nei"]:
+            break
+        else:
+            print("Þetta er ekki gilt svar")
+    return ans.lower() in ["j", "já", "ja"]
+
+
 def get_attr(num, attri, cardsDictio):
     if attri == Reference.CATEGORY.WEIGHT:
         return cardsDictio[num].weight

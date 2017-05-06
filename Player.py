@@ -16,9 +16,11 @@ class Player:
         self.name = name
         self.cards = cards
         self.ai = ai
+        self.out = False
 
     def get_top_card(self):
         """Returns top card"""
+        debug("Spil í get_top_card: ")
         debug(self.cards[-1])
         return self.cards[-1]
 
@@ -31,14 +33,11 @@ class Player:
             UI.display_card(self.get_top_card())
             return CATEGORY(intinput("Hvaða flokk villtu velja", 1, 8))
         else:
-            return randint(1, 8)
+            return CATEGORY(randint(1, 8))
 
     def remove_top_card(self):
         """pops top card and returns it"""
-        card = self.cards[len(self.cards) - 1]
-        debug(self.cards[-1])
-        self.cards.pop()
-        return card
+        return self.cards.pop()
 
     def add_cards(self, cards):
         """Add cards to list"""

@@ -27,6 +27,10 @@ class UI:
     def print_score_board(players, attribute, winner):
         scores = {}
         for p in players:
+            if p.out or len(p.cards) == 0:
+                print(p.name + " er úr leik")
+                p.out = True
+                continue
             scores[p.name] = p.get_top_card()
             print('---------')
             print(p.name)
@@ -35,8 +39,14 @@ class UI:
                 print(i.name)
             print('---------')
         print('--- Sigurvegari ---')
-        print()
+        print(winner.name)
         print("--- Stig ---")
         for i in scores:
             print(i, Functions.get_attr(i, attribute, scores))
+
+    @staticmethod
+    def print_game_winner(player):
+        print("------")
+        print(player.name + " vann leikinn")
+        print("------")
 
