@@ -10,7 +10,7 @@ from Functions import *
 
 
 class Game:
-    """Aðal klasinn fyrir leikinn sjálfan"""
+    """main class for the game"""
 
     def __init__(self, players):
         self.players = players
@@ -23,11 +23,11 @@ class Game:
         self.restart_game = False
 
     def current_player(self):
-        """Skilar núverandi spilanda"""
+        """Retunes the current player"""
         return self.players[self.current_player_id]
 
     def set_current_player_to_next_player(self):
-        """Setur current_player_id í spilandann sem á að gera næst"""
+        """Setts current player id to the next player"""
         if len(self.players) - 1 <= self.current_player_id:
             self.current_player_id = 0
         else:
@@ -46,7 +46,7 @@ class Game:
                 p.remove_top_card()
 
     def values_for_category(self, category):
-        """Skilar lista af einkun fyrir tiltekin eiginleika fyrir alla spilendur"""
+        """Returns a list of the vurent values for categoryfor all players"""
         values = []
         for i in range(len(self.players)):
             if self.players[i].out or len(self.players[i].cards) == 0:
@@ -71,7 +71,7 @@ class Game:
         return values
 
     def find_player_with_highest_of(self, category):
-        """Skilar spilenda með hæstu einkunn af eiginleika"""
+        """Returns player with higest of category"""
         values = self.values_for_category(category)
         return self.players[values.index(max(values))]
 
@@ -100,12 +100,12 @@ class Game:
 
 
     def two_players_with_same_value(self, category):
-        """Skilar true eða false eftir því hvort tveir spilendur séu með sömu tölu eða ekki"""
+        """returns true or falce based on if 2 players have same value"""
         values = self.values_for_category(category)
         return int(values.count(max(values))) > int(1)
 
     def get_players_with_same_value(self, category):
-        """Skilar lista af spilendum sem eru með hæstu einkunnina af eiginleika"""
+        """Returnes list of players witch have higest of category"""
         values = self.values_for_category(category)
         players = []
         for i in range(len(values)):
@@ -114,7 +114,7 @@ class Game:
         return players
 
     def do_winner_stuff(self, category):
-        """Þetta function þarf "betra" nafn"""
+        """the function witch needs a better name"""
         player = self.find_player_with_highest_of(category)
         cards = []
         for p in self.players:
@@ -177,7 +177,7 @@ class Game:
         UI.print_score_board(self.extra_card_players, category, player)
 
     def state2_values_for_category(self, category):
-        """Skilar lista af einkun fyrir tiltekin eiginleika fyrir alla spilendur"""
+        """Returns a list of the curent values of a category for all players"""
         values = []
         for i in range(len(self.extra_card_players)):
             if self.extra_card_players[i].out or len(self.extra_card_players[i].cards) == 0:
@@ -202,12 +202,12 @@ class Game:
         return values
 
     def state2_two_players_with_same_value(self, category):
-        """Skilar true eða false eftir því hvort tveir spilendur séu með sömu tölu eða ekki"""
+        """ returns true or falce based on if 2 players have same value"""
         values = self.state2_values_for_category(category)
         return int(values.count(max(values))) > int(1)
 
     def state2_get_players_with_same_value(self, category):
-        """Skilar lista af spilendum sem eru með hæstu einkunnina af eiginleika"""
+        """Returnes list of players witch have higest of category"""
         values = self.state2_values_for_category(category)
         players = []
         for i in range(len(values)):
@@ -234,7 +234,7 @@ class Game:
     ######################################################################
 
     def loop(self):
-        """Aðal loopan í leiknum"""
+        """main gaameloop"""
         self.check_for_game_winner()
         if self.restart_game:
             return
