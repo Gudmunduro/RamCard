@@ -25,6 +25,7 @@ class Main:
             card_count += len(cards)
             players.append(Player(name, cards))
         ai_cards = card_splitter.get_random_cards()
+        card_count += len(ai_cards)
         players.append(Player("Tölva", ai_cards))
         players[len(players) - 1].ai = True
 

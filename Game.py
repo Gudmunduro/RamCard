@@ -80,7 +80,7 @@ class Game:
         for p in self.players:
             if p.out:
                 count += 1
-        return  count > 1
+        return count > 1
 
 
     def check_for_game_winner(self):
@@ -102,7 +102,7 @@ class Game:
     def two_players_with_same_value(self, category):
         """Skilar true eða false eftir því hvort tveir spilendur séu með sömu tölu eða ekki"""
         values = self.values_for_category(category)
-        return values.count(max(values)) > 1
+        return int(values.count(max(values))) > int(1)
 
     def get_players_with_same_value(self, category):
         """Skilar lista af spilendum sem eru með hæstu einkunnina af eiginleika"""
@@ -204,7 +204,7 @@ class Game:
     def state2_two_players_with_same_value(self, category):
         """Skilar true eða false eftir því hvort tveir spilendur séu með sömu tölu eða ekki"""
         values = self.state2_values_for_category(category)
-        return values.count(max(values)) > 1
+        return int(values.count(max(values))) > int(1)
 
     def state2_get_players_with_same_value(self, category):
         """Skilar lista af spilendum sem eru með hæstu einkunnina af eiginleika"""
