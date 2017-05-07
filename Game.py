@@ -119,7 +119,7 @@ class Game:
         return players
 
     def do_winner_stuff(self, category):
-        """the function that needs a better name"""
+        """Called when player wins a round"""
         player = self.find_player_with_highest_of(category)
         cards = []
         for p in self.players:
@@ -212,12 +212,12 @@ class Game:
         return values
 
     def state2_two_players_with_same_value(self, category):
-        """ returns true or falce based on if 2 players have same value(in state 2)"""
+        """ returns true or false based on if 2 players have same value(in state 2)"""
         values = self.state2_values_for_category(category)
         return int(values.count(max(values))) > int(1)
 
     def state2_get_players_with_same_value(self, category):
-        """returnes list of players which have higest of category(in state 2)"""
+        """returnes list of players which have highest of category(in state 2)"""
         values = self.state2_values_for_category(category)
         players = []
         for i in range(len(values)):
