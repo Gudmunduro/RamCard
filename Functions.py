@@ -53,5 +53,6 @@ def get_attr(num, attri, cardsDictio):
 
 
 def debug(text):
+    """prints only when Refrence.DEBUG is true"""
     if Reference.DEBUG:
         print(text)

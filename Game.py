@@ -23,17 +23,18 @@ class Game:
         self.restart_game = False
 
     def current_player(self):
-        """Retunes the current player"""
+        """retunes the current player"""
         return self.players[self.current_player_id]
 
     def set_current_player_to_next_player(self):
-        """Setts current player id to the next player"""
+        """sets current player id to the id of next player"""
         if len(self.players) - 1 <= self.current_player_id:
             self.current_player_id = 0
         else:
             self.current_player_id += 1
 
     def get_top_cards(self):
+        """returns the top card for all players"""
         cards = []
         for p in self.players:
             if not p.out:
@@ -41,12 +42,13 @@ class Game:
         return cards
 
     def remove_top_cards(self):
+        """removes the top card for all players"""
         for p in self.players:
             if not p.out:
                 p.remove_top_card()
 
     def values_for_category(self, category):
-        """Returns a list of the vurent values for categoryfor all players"""
+        """returns a list of the values for category of the top card for all players"""
         values = []
         for i in range(len(self.players)):
             if self.players[i].out or len(self.players[i].cards) == 0:
@@ -71,11 +73,12 @@ class Game:
         return values
 
     def find_player_with_highest_of(self, category):
-        """Returns player with higest of category"""
+        """Returns player with higest value in a category"""
         values = self.values_for_category(category)
         return self.players[values.index(max(values))]
 
     def all_players_out_except_one(self):
+        """returns true or false based on if there is only one player remaining or not"""
         count = 0
         for p in self.players:
             if p.out:
@@ -84,6 +87,7 @@ class Game:
 
 
     def check_for_game_winner(self):
+        """checks of if any player has won the game"""
         for p in self.players:
             if len(p.cards) == self.card_count or self.all_players_out_except_one():
                 UI.print_game_winner(p)
@@ -94,18 +98,19 @@ class Game:
                     exit()
 
     def check_for_zero_cards(self):
+        """checks if any player has zero cards ands sets out to True on those players"""
         for p in self.players:
             if len(p.cards) == 0:
                 p.out = True
 
 
     def two_players_with_same_value(self, category):
-        """returns true or falce based on if 2 players have same value"""
+        """returns true or false based on if 2 players have same value"""
         values = self.values_for_category(category)
         return int(values.count(max(values))) > int(1)
 
     def get_players_with_same_value(self, category):
-        """Returnes list of players witch have higest of category"""
+        """returns list of players which have highest of category"""
         values = self.values_for_category(category)
         players = []
         for i in range(len(values)):
@@ -114,7 +119,7 @@ class Game:
         return players
 
     def do_winner_stuff(self, category):
-        """the function witch needs a better name"""
+        """the function that needs a better name"""
         player = self.find_player_with_highest_of(category)
         cards = []
         for p in self.players:
@@ -131,24 +136,27 @@ class Game:
 
     # -------- state 2 --------
     """
-        State 2 is...
+        State 2 is when two or more players have the highest value
     """
 
     def state2_current_player(self):
+        """returns the current player(in state 2)"""
         return self.extra_card_players[self.state2_current_player_id]
 
     def state2_set_current_player_to_next_player(self):
-        """Setur current_player_id í spilandann sem á að gera næst"""
+        """Setur current_player_id í spilandann sem á að gera næst(in state 2)"""
         if len(self.extra_card_players) >= self.state2_current_player_id:
             self.state2_current_player_id = 0
         else:
             self.state2_current_player_id += 1
 
     def state2_find_player_with_highest_of(self, category):
+        """Returns player with highest value in a category(in state 2)"""
         values = self.state2_values_for_category(category)
         return self.extra_card_players[values.index(max(values))]
 
     def state2_get_top_cards(self):
+        """returns the top card for all players(in state 2)"""
         cards = []
         for p in self.extra_card_players:
             if not p.out:
@@ -156,11 +164,13 @@ class Game:
         return cards
 
     def state2_remove_top_cards(self):
+        """removes the top card for all players(in state 2)"""
         for p in self.extra_card_players:
             if not p.out:
                 p.remove_top_card()
 
     def state2_do_winner_stuff(self, category):
+        """Called when player wins a round(in state 2)"""
         self.state = 0
         player = self.state2_find_player_with_highest_of(category)
         cards = []
@@ -177,7 +187,7 @@ class Game:
         UI.print_score_board(self.extra_card_players, category, player)
 
     def state2_values_for_category(self, category):
-        """Returns a list of the curent values of a category for all players"""
+        """returns a list of the values for category of the top card for all players(in state 2)"""
         values = []
         for i in range(len(self.extra_card_players)):
             if self.extra_card_players[i].out or len(self.extra_card_players[i].cards) == 0:
@@ -202,12 +212,12 @@ class Game:
         return values
 
     def state2_two_players_with_same_value(self, category):
-        """ returns true or falce based on if 2 players have same value"""
+        """ returns true or falce based on if 2 players have same value(in state 2)"""
         values = self.state2_values_for_category(category)
         return int(values.count(max(values))) > int(1)
 
     def state2_get_players_with_same_value(self, category):
-        """Returnes list of players witch have higest of category"""
+        """returnes list of players which have higest of category(in state 2)"""
         values = self.state2_values_for_category(category)
         players = []
         for i in range(len(values)):
@@ -216,6 +226,7 @@ class Game:
         return players
 
     def state2(self):
+        """The main loop in state 2"""
         self.check_for_game_winner()
         if self.state2_current_player().out:
             self.state2_set_current_player_to_next_player()
@@ -234,7 +245,7 @@ class Game:
     ######################################################################
 
     def loop(self):
-        """main gaameloop"""
+        """main game loop"""
         self.check_for_game_winner()
         if self.restart_game:
             return

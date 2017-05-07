@@ -25,6 +25,7 @@ class UI:
 
     @staticmethod
     def print_score_board(players, attribute, winner):
+        """Prints the score board (called after each round)"""
         scores = {}
         for p in players:
             if p.out or len(p.cards) == 0:
@@ -46,6 +47,7 @@ class UI:
 
     @staticmethod
     def print_game_winner(player):
+        """Prints the winner of the game"""
         print("------")
         print(player.name + " vann leikinn")
         print("------")
